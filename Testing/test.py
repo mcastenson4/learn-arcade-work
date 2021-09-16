@@ -1,10 +1,5 @@
-print("""Holy moly!
-This 
-class
-is 
-something
-lol
-""")
 
+
+def main
 
 
