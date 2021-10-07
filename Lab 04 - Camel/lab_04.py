@@ -95,7 +95,7 @@ while not done:
         done = True
 
     if mariocar > 6 and mariocar >= 9 and not done:
-        print ("The car's fuel light turned on.")
+        print("The car's fuel light turned on.")
 
     if mariocar > 9:
         print("Your car ran out of gas.")
