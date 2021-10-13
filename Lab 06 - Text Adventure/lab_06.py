@@ -1,42 +1,41 @@
-class Character:
+class Room:
     """
-    This is a video game.
+    This class represents an adventure game.
     """
-    def __init__(self):
-        """Create my character"""
+    def __init__(self, description, north, east, south, west):
+        """Create an adventure"""
         x = 0
-        self.name = ""
-        self.outfit = ""
-        self.max_hit_points = 0
-        self.current_hit_points = 0
-        self.armour_amount = 0
-        self.max_speed = 0
+        self.description = ""
+        self.north = north
+        self.east = east
+        self.south = south
+        self.west = west
 
 def main():
-    home_address = Address()
-    home_address.name = "John Smith"
+    my_list = []
+    my_room = Room("West Hall", 1, 3, 5, 6)
+    my_list.append(my_room)
 
+    my_room = Room("Bedroom", None, 2, 0, None)
+    my_list.append(my_room)
 
- # Set the fields in the address
-    home_address.name = "John Smith"
-    home_address.line1 = "701 N. C Street"
-    home_address.line2 = "Carver Science Building"
-    home_address.city = "Indianola"
-    home_address.state = "IA"
-    home_address.zip = "50125"
+    my_room = Room("Kitchen", None, None, 3, 0)
+    my_list.append(my_room)
 
- # Create another address
-    vacation_home_address = Address()
+    my_room = Room("East Hall", 2, None, 4, 0)
+    my_list.append(my_room)
 
-    # Set the fields in the address
-    vacation_home_address.name = "John Smith"
-    vacation_home_address.line1 = "1122 Main Street"
-    vacation_home_address.line2 = ""
-    vacation_home_address.city = "Panama City Beach"
-    vacation_home_address.state = "FL"
-    vacation_home_address.zip = "32407"
+    my_room = Room("Bathroom", 3, None, None, 5)
+    my_list.append(my_room)
 
-    print("The client's main home is in " + home_address.city)
-    print("His vacation home is in " + vacation_home_address.city)
+    my_room = Room("Bedroom", 0, 4, None, None)
+    my_list.append(my_room)
+
+    my_room = Room("Porch", None, 0, None, None)
+    my_list.append(my_room)
+
+    current_room = 0
+    print(my_list [current_room].description)
+
 
 main()
