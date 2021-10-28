@@ -1,108 +1,60 @@
+""" Sprite Sample Program """
+
+import random
 import arcade
 
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
-MOVEMENT_SPEED = 5
-DEAD_ZONE = 0.02
+# --- Constants ---
+SPRITE_SCALING_PLAYER = 0.5
+SPRITE_SCALING_COIN = 0.2
+COIN_COUNT = 50
 
-
-class Ball:
-    def __init__(self, position_x, position_y, change_x, change_y, radius, color):
-
-        # Take the parameters of the init function above,
-        # and create instance variables out of them.
-        self.position_x = position_x
-        self.position_y = position_y
-        self.change_x = change_x
-        self.change_y = change_y
-        self.radius = radius
-        self.color = color
-
-    def draw(self):
-        """ Draw the balls with the instance variables we have. """
-        arcade.draw_circle_filled(self.position_x,
-                                  self.position_y,
-                                  self.radius,
-                                  self.color)
-
-    def update(self):
-        # Move the ball
-        self.position_y += self.change_y
-        self.position_x += self.change_x
-
-        # See if the ball hit the edge of the screen. If so, change direction
-        if self.position_x < self.radius:
-            self.position_x = self.radius
-
-        if self.position_x > SCREEN_WIDTH - self.radius:
-            self.position_x = SCREEN_WIDTH - self.radius
-
-        if self.position_y < self.radius:
-            self.position_y = self.radius
-
-        if self.position_y > SCREEN_HEIGHT - self.radius:
-            self.position_y = SCREEN_HEIGHT - self.radius
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 
 
 class MyGame(arcade.Window):
+    """ Our custom Window Class"""
 
-    def __init__(self, width, height, title):
+    def __init__(self):
+        """ Initializer """
+        # Call the parent class initializer
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Sprite Example")
 
-        # Call the parent class's init function
-        super().__init__(width, height, title)
+        self.player_list = None
+        self.coin_list = None
 
-        # Make the mouse disappear when it is over the window.
-        # So we just see our object, not the pointer.
+        self.player_sprite = None
+        self.score = 0
+
         self.set_mouse_visible(False)
-
-        arcade.set_background_color(arcade.color.ASH_GREY)
-
-        # Create our ball
-        self.ball = Ball(50, 50, 0, 0, 15, arcade.color.AUBURN)
-
-        # Get a list of all the game controllers that are plugged in
-        joysticks = arcade.get_joysticks()
+        arcade.set_background_color(arcade.color.PURPLE)
 
 
-        # If we have a game controller plugged in, grab it and
+    def setup(self):
 
-        # make an instance variable out of it.
+        self.player_list = arcade.SpriteList()
+        self.coin_list = arcade.SpriteList()
 
-        if joysticks:
+        self.score = 0
 
-            self.joystick = joysticks[0]
-
-            self.joystick.open()
-
-        else:
-
-            print("There are no joysticks.")
-
-            self.joystick = None
-
+        self.player_sprite = arcade.Sprite("character.png", SPRITE_SCALING_PLAYER)
+        self.player_sprite.center_x = 50
+        self.player_sprite.center_y = 50
+        self.player_list.append(self.player_sprite)
 
     def on_draw(self):
-
-        """ Called whenever we need to draw the window. """
         arcade.start_render()
-        self.ball.draw()
-
-
-    def update(self, delta_time):
-
-
-
-        # Update the position according to the game controller
-
-        if self.joystick:
-
-            print(self.joystick.x, self.joystick.y)
+        self.player_list.draw()
+        self.coin_list.draw()
 
 
 
 def main():
-    window = MyGame(640, 480, "Drawing Example")
+    """ Main method """
+    window = MyGame()
+    window.setup()
     arcade.run()
 
 
-main()
+if __name__ == "__main__":
+    main()
