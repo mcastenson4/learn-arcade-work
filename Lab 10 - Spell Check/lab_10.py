@@ -6,19 +6,20 @@ def split_line(line):
 
 
 def main():
-    my_file = open("dictionary.txt")
+    my_list = open("dictionary.txt")
     dictionary_list = []
-    for line in my_file:
+
+    for line in my_list:
         line = line.strip()
         dictionary_list.append(line)
-    my_file.close()
+    my_list.close()
+
     print("--- Linear Search ---")
 
-# --- Linear search
-
-    alice_file = open("AliceInWonderLand200.txt")
+    my_file = open("AliceInWonderLand200.txt")
     line_number = 0
-    for line in alice_file:
+
+    for line in my_file:
         line_number += 1
         word_list = split_line(line)
         for word in word_list:
@@ -29,13 +30,14 @@ def main():
 
             if current_list_position == len(dictionary_list):
                 print("line " + str (line_number) + " Possible Mispelled word: " + word)
-    alice_file.close()
+    my_file.close()
 
     print("--- Binary Search ---")
 
-    alice_file = open("AliceInWonderLand200.txt")
+    my_file = open("AliceInWonderLand200.txt")
     line_number = 0
-    for line in alice_file:
+
+    for line in my_file:
         line_number += 1
         word_list = split_line(line)
         for word in word_list:
@@ -55,7 +57,7 @@ def main():
                     found = True
             if not found:
                 print("line " + str(line_number) + " Possible Mispelled word: " + word)
-    alice_file.close()
+    my_file.close()
 
 
 main()
