@@ -22,7 +22,6 @@ MARGIN = 5
 SCREEN_WIDTH = (WIDTH + MARGIN) * COLUMN_COUNT + MARGIN
 SCREEN_HEIGHT = (HEIGHT + MARGIN) * ROW_COUNT + MARGIN
 
-
 class MyGame(arcade.Window):
     """
     Main application class.
@@ -73,6 +72,11 @@ class MyGame(arcade.Window):
         """
         Called when the user presses a mouse button.
         """
+        # Counting variables
+        total = 0
+        rowTotal = 0
+        columnTotal = 0
+        continuous_count = 0
 
         # Change the x/y screen coordinates to grid coordinates
         column = x // (WIDTH + MARGIN)
@@ -84,18 +88,149 @@ class MyGame(arcade.Window):
         # corner in the margin and go to a grid location that doesn't exist
         if row < ROW_COUNT and column < COLUMN_COUNT:
 
-            # Flip the location between 1 and 0.
-            if self.grid[row][column] == 0:
-                self.grid[row][column] = 1
+            ## test corners
+            ## top left corner
+            if row == 0 and column == 0:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row + 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row + 1][column] = 0
+            ## top right corner
+            elif row == 0 and column == COLUMN_COUNT - 1:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row + 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row + 1][column] = 0
+            ## bottom left corner
+            elif row == ROW_COUNT - 1 and column == 0:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row - 1][column] = 0
+            ## bottom right corner
+            elif row == ROW_COUNT - 1 and column == COLUMN_COUNT - 1:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row - 1][column] = 0
+            ## test sides
+            # top side
+            elif row == 0:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row + 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row + 1][column] = 0
+            # bottom side
+            elif row == ROW_COUNT - 1:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row - 1][column] = 0
+            # left side
+            elif column == 0:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row + 1][column] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row + 1][column] = 0
+                    self.grid[row - 1][column] = 0
+            # right side
+            elif column == COLUMN_COUNT - 1:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row + 1][column] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row + 1][column] = 0
+                    self.grid[row - 1][column] = 0
+            # anywhere in the middle
             else:
-                self.grid[row][column] = 0
+                # Flip the location between 1 and 0.
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    #left
+                    self.grid[row][column - 1] = 1
+                    #right
+                    self.grid[row][column + 1] = 1
+                    #down
+                    self.grid[row + 1][column] = 1
+                    #up
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row + 1][column] = 0
+                    self.grid[row - 1][column] = 0
 
+        for row in range(ROW_COUNT):
+            for column in range(COLUMN_COUNT):
+                if self.grid[row][column] == 1:
+                    total = total + 1
+        print(f"Total of {total} cells are selected")
+
+        for row in range(ROW_COUNT):
+            rowTotal = 0
+            continuous_count = 0
+            for column in range(COLUMN_COUNT):
+                if self.grid[row][column] == 1:
+                    rowTotal = rowTotal + 1
+                    continuous_count = continuous_count + 1
+                else:
+                    if continuous_count > 2:
+                        print(f"There are {continuous_count} continuous blocks selected on row {row}")
+                        continuous_count = 0
+                    else:
+                        continuous_count = 0
+            if continuous_count > 2:
+                print(f"There are {continuous_count} continuous blocks selected on row {row}")
+            print(f"Row {row} has {rowTotal} cells selected")
+
+        for column in range(COLUMN_COUNT):
+            columnTotal = 0
+            for row in range(ROW_COUNT):
+                if self.grid[row][column] == 1:
+                    columnTotal = columnTotal + 1
+            print(f"Column {column} has {columnTotal} cells selected")
 
 def main():
-
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
     arcade.run()
-
 
 if __name__ == "__main__":
     main()
