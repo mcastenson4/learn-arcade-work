@@ -84,18 +84,119 @@ class MyGame(arcade.Window):
         # corner in the margin and go to a grid location that doesn't exist
         if row < ROW_COUNT and column < COLUMN_COUNT:
 
-            # Flip the location between 1 and 0.
-            if self.grid[row][column] == 0:
-                self.grid[row][column] = 1
+            ## test corners
+            ## top left corner
+            if row == 0 and column == 0:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row + 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row + 1][column] = 0
+            ## top right corner
+            elif row == 0 and column == COLUMN_COUNT - 1:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row + 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row + 1][column] = 0
+            ## bottom left corner
+            elif row == ROW_COUNT - 1 and column == 0:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row - 1][column] = 0
+            ## bottom right corner
+            elif row == ROW_COUNT - 1 and column == COLUMN_COUNT - 1:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row - 1][column] = 0
+            ## test sides
+            # top side
+            elif row == 0:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row + 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row + 1][column] = 0
+            # bottom side
+            elif row == ROW_COUNT - 1:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row - 1][column] = 0
+            # left side
+            elif column == 0:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column + 1] = 1
+                    self.grid[row + 1][column] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row + 1][column] = 0
+                    self.grid[row - 1][column] = 0
+            # right side
+            elif column == COLUMN_COUNT - 1:
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    self.grid[row][column - 1] = 1
+                    self.grid[row + 1][column] = 1
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row + 1][column] = 0
+                    self.grid[row - 1][column] = 0
+            # anywhere in the middle
             else:
-                self.grid[row][column] = 0
-
+                # Flip the location between 1 and 0.
+                if self.grid[row][column] == 0:
+                    self.grid[row][column] = 1
+                    #left
+                    self.grid[row][column - 1] = 1
+                    #right
+                    self.grid[row][column + 1] = 1
+                    #down 
+                    self.grid[row + 1][column] = 1
+                    #up
+                    self.grid[row - 1][column] = 1
+                else:
+                    self.grid[row][column] = 0
+                    self.grid[row][column - 1] = 0
+                    self.grid[row][column + 1] = 0
+                    self.grid[row + 1][column] = 0
+                    self.grid[row - 1][column] = 0
 
 def main():
-
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
     arcade.run()
-
 
 if __name__ == "__main__":
     main()
