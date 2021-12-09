@@ -1,0 +1,95 @@
+Morgan Castenson
+December 1, 2021
+Quantitative Reasoning Reflection
+
+Question 1.
+
+This semester the Intro. to Programming course expanded my knowledge of
+quantitative reasoning. We used multiple methods and algorithms to create
+images, games, and text adventures. Each lab I completed, required several
+choices regarding the proper methods to use. I've grown as a student by learning
+which methods to select, examining the problem before me, and making a
+quantitative decision. We used lists in the Spell Check - Lab 10 to search
+through a large Alice in Wonderland file and create a word list. Throughout the
+section, I learned how to append to a list, modify a specific attribute of a
+list, and loop through a list. In the future, I will have a better understanding
+of how smart speakers track lists or websites print sports statistics in lists.
+
+I learned that "if" statements cover basic comparisons between one or multiple
+objects. When I was deciding which methods to apply, I would ask myself what I
+needed to know about a particular value. If I needed to know if "key pressed"
+was true, I could build a flowchart that determined what would happen next in
+my program. Overall, classes and functions allowed my programs to run more
+efficiently. Classes can group attributes together into one instance, like a
+cactus with a body and arms to be placed drawn repetitively in a scene.
+Functions act as actions within programs to be called upon. In many of our
+programs, we wanted a character to perform an action more than once. In our last
+lab with Array-Backed Grids, I built a "mouse press" function that changed the
+colors of the squares green on click. We wanted this function to be called every.
+time the user clicked, not just the first time. Implementing functions and
+classes eliminates unnecessary duplicate code in programs.
+
+Question 2.
+
+Communicating my solution from one programmer to another is an essential part of
+understanding my code. To start, it's important to give programs a generic title
+with a descriptive subject and keep track of the author and dates edited. Then,
+I declare my variables at the top with a short comment regarding what those
+variables will be used for. If you use jibberish in your code, there's no
+guarantee that even I could understand it again. So, variable names matter
+because they give a quick insight to what they're keeping track of. A common one 
+we used throughout the semester was SCREEN_HEIGHT, can you guess what that
+means? Of course, it's screen height and certainly not screen width. But if I
+were to have named that variable "s" you might have thought it meant start
+location when in my head it was screen height.
+
+Further, using descriptive function names and comments also enhances the
+relevance of a program. Basically, we should use common sense for functions and
+stick to a consistent best practice format like camel case or underscores.
+Lastly, comments are very helpful for remembering the English translation of
+what an algorithm is doing. One example would be search through all players to
+find someone named Morgan. Where if I just wrote a for loop with a list, I might
+not remember the goal and other developers that might use my Github for
+reference will have no idea what is going on.
+
+Question 3.
+
+The best way I found to test my code was going one step at a time. In the
+beginning of the semester, I was very overwhelmed and often could never find my
+errors. Then, I realized it was beneficial to implement some code and then run
+it to see if it worked. If there were errors, I could focus on fixing them
+before going any further. Ensuring the accuracy of my code was a little
+trickier, I had to think through all the use cases. For example, in the Lab 6 -
+Text Adventure at each step I needed to think through what would happen with
+each cardinal direction. So, when testing my program, I would try each choice
+at every step.
+
+Determining if data was returned correctly usually involved print statements and
+the same thing for debugging errors. For example, in Lab 5 - Loopy Lab in our
+starter shell we printed "i" within the for loop just to see what it was. This
+showed us visually in the console that the loop was counting down and the
+subtraction computation was being down accurately. Similarly, when I was trying
+to find errors, I would add print statements several places within the program
+to see which steps completed successfully.
+
+Question 4.
+
+Although numerical methods can provide factual evidence, they're not always
+complete in making complex decisions. The simplest example is a calculator,
+it's a very useful mathematical tool to prove computations. But these answers
+should be used as a reference or a validation. We must consider if the user is
+even utilizing the algorithms correctly. I had a high school friend ask me if
+75% was converted to 3/4 or 4/3. They couldn't remember which number went on
+top. Sometimes, even though the tools are at our disposable we might not know
+the proper way to use them.
+
+Next, as an education major the concept of student test scores hits home. We've
+learned that students can develop in a handful of ways and should be provided
+with numerous opportunities to show they've grasped a concept. A test score is
+one snapshot of a student's ability. Therefore, professors often factor in other
+opportunities like labs, discussions, projects, and essays. The limitations lie
+in the emotional and relational connections we can have as humans with our
+interactions. For example, some athletes may be valuable leaders and vocal
+encouragers on the court but only score half the points of the all-star. No
+statistic could ever measure the good person inside, even though numerical
+methods can help form half the picture.
